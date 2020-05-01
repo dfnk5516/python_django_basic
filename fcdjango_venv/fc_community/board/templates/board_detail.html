@@ -2,15 +2,21 @@
 {% block contents %}
 <div class="row mt-5">
     <div class="col-12">
-        <form method="post" action=".">
-            <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" id="title" class="form-control" value="{{board.title}}" placeholder="{{field.label}}" readonly>
-                <label for="contents">내용</label>
-                <textarea class="form-control" readonly>{{board.contents}}</textarea>
-            </div>
-            <button class="btn btn-primary">돌아가기</button>
-        </form>
+        <div class="form-group">
+            <label for="title">제목</label>
+            <input type="text" id="title" class="form-control" value="{{board.title}}" placeholder="{{field.label}}"
+                readonly>
+            <label for="contents">내용</label>
+            <textarea class="form-control" readonly>{{board.contents}}</textarea>
+            <label for="tags">태그</label>
+            <span id="tags" class="form-control">
+                {{board.tags.all|join:", "}}<!-- 이거 권장 -->
+                <!-- {% for tag in board.tags.all%}
+                {{tag.name}},
+                {%endfor%} -->
+            </span>
+        </div>
+        <button class="btn btn-primary" onclick="location.href='/board/list'">돌아가기</button>
     </div>
 </div>
 {%endblock%}
